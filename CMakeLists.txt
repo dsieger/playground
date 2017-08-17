@@ -15,4 +15,13 @@ set(GOOGLE_TEST_SOURCES
 
 add_library(googletest ${GOOGLE_TEST_SOURCES})
 
+add_executable(unitTests tests/main.cpp tests/trivial.cpp)
+add_dependencies(unitTests googletest)
+target_link_libraries(unitTests googletest pthread)
+
+include(CTest)
+enable_testing()
+
+add_test(unitTest ${PROJECT_BINARY_DIR}/unitTests)
+
 add_executable(asdf main.cpp)
