@@ -1,6 +1,10 @@
 language: cpp
+os:
+  - linux
+  - osx
 compiler:
-- gcc
+  - gcc
+  - clang
 sudo: false
 dist: trusty
 before_script:
