@@ -17,7 +17,12 @@ add_library(googletest ${GOOGLE_TEST_SOURCES})
 
 add_executable(unitTests tests/main.cpp tests/trivial.cpp)
 add_dependencies(unitTests googletest)
-target_link_libraries(unitTests googletest pthread)
+
+if(UNIX OR APPLE)
+  target_link_libraries(unitTests googletest pthread)
+elseif(WIN32)
+  target_link_libraries(unitTests googletest)
+endif()
 
 include(CTest)
 enable_testing()
