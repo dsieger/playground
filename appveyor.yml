@@ -16,3 +16,6 @@ build:
   project: build\playground.sln
   parallel: true
   verbosity: normal
+test_script:
+  - cd build
+  - ctest -C %CONFIGURATION%
