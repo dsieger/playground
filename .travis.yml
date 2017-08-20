@@ -7,6 +7,8 @@ compiler:
   - clang
 sudo: false
 dist: trusty
+before_install:
+  - pip install --user cpp-coveralls
 before_script:
   - mkdir build
   - cd build
@@ -14,3 +16,5 @@ before_script:
 script:
   - make
   - make test
+after_success:
+  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*"
