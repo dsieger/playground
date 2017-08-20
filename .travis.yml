@@ -28,7 +28,7 @@ matrix:
 sudo: false
 dist: trusty
 before_install:
-  - pip install --user cpp-coveralls
+  - if [ "$CONFIG" == "Debug" ] && [ "$CXX" == "g++" ]; then pip install --user cpp-coveralls ; fi
 before_script:
   - mkdir build
   - cd build
@@ -37,4 +37,4 @@ script:
   - make
   - make test
 after_success:
-  - if [[ "$CONFIG" == "Debug" ]]; then coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*" ; fi
+  - if [ "$CONFIG" == "Debug" ] && [ "$CXX" == "g++" ]; then coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*" ; fi
