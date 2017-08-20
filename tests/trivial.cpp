@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 
-TEST(trivial, trivial)
+#include "test.h"
+
+TEST(square, square)
 {
-    ASSERT_TRUE(true);
+    ASSERT_EQ(square(3),9);
 }

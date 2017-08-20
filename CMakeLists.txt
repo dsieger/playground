@@ -1,9 +1,13 @@
 project(playground)
 cmake_minimum_required(VERSION 2.8)
 
+
+add_library(asdf test.cpp)
+
 set(GOOGLE_TEST_ROOT external/googletest/googletest CACHE STRING "Google Test root")
 
 include_directories(
+  ${PROJECT_SOURCE_DIR}/
   ${PROJECT_SOURCE_DIR}/${GOOGLE_TEST_ROOT}
   ${PROJECT_SOURCE_DIR}/${GOOGLE_TEST_ROOT}/include
   )
@@ -19,14 +23,12 @@ add_executable(unitTests tests/main.cpp tests/trivial.cpp)
 add_dependencies(unitTests googletest)
 
 if(UNIX OR APPLE)
-  target_link_libraries(unitTests googletest pthread)
+  target_link_libraries(unitTests asdf googletest pthread)
 elseif(WIN32)
-  target_link_libraries(unitTests googletest)
+  target_link_libraries(unitTests asdf googletest)
 endif()
 
 include(CTest)
 enable_testing()
 
 add_test(unitTest ${PROJECT_BINARY_DIR}/unitTests)
-
-add_executable(asdf main.cpp)
