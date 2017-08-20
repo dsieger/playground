@@ -1,7 +1,14 @@
 language: cpp
-os:
-  - linux
-  - osx
+matrix:
+  include:
+  - os: linux
+    env: CONFIG=Debug
+  - os: linux
+    env: CONFIG=Release
+  - os: osx
+    env: CONFIG=Debug
+  - os: osx
+    env: CONFIG=Release
 compiler:
   - gcc
   - clang
@@ -12,7 +19,7 @@ before_install:
 before_script:
   - mkdir build
   - cd build
-  - cmake ..
+  - cmake -DCMAKE_BUILD_TYPE=${CONFIG} ..
 script:
   - make
   - make test

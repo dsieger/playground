@@ -1,7 +1,7 @@
 project(playground)
 cmake_minimum_required(VERSION 2.8)
 
-if(CMAKE_COMPILER_IS_GNUCXX)
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug" AND CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
   set(CMAKE_C_FLAGS "-g -O0 -W -fprofile-arcs -ftest-coverage")
   set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
