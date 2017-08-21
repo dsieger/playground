@@ -37,3 +37,9 @@ include(CTest)
 enable_testing()
 
 add_test(unitTest ${PROJECT_BINARY_DIR}/unitTests)
+
+set(CPACK_PACKAGE_VERSION 1.0)
+set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${CPACK_PACKAGE_VERSION}")
+set(CPACK_SOURCE_IGNORE_FILES "/build/;/.git/;~$;${CPACK_SOURCE_IGNORE_FILES}")
+set(CPACK_SOURCE_GENERATOR "ZIP")
+include(CPack)
