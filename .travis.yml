@@ -38,13 +38,3 @@ script:
   - make test
 after_success:
   - if [ "$CONFIG" == "Debug" ] && [ "$CXX" == "g++" ] && [ "$TRAVIS_OS_NAME" == linux ] ; then coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*" ; fi
-  - make package_source
-deploy:
-  provider: releases
-  api_key:
-    secure: zFor9oVKRPRieoTYgEYuqHVdID8kB5/aZoHD6v0o7Tgl0K0DlMu4ZV2f6Kyj4oVn+utrT2lvb16FObFFMl+alsEDGebiTAoKERogsYlj1F438PSPDNBvEXk+OafAjk2bnNs3siG+7zfbnS9BvcxTI6lHmTxmf9fK0+uD/qfgwgLDO9ly/r1P02SETeBwn6fKwgfvgSO/gCg57R/uTRdfU8woRTetJP8Pqzk0HvJh1b6eT8uRh/BVP1Dba/yKGK76a2+/qUved/YvD7mlqafvT/wQVTsI+wT2YwrkLWh7awtowjLVjK2X4ZfXoEfvOXHI1Tgy6TmvyeTZEvXeHkwn3ayHms3Ogvi9naK9ekrQK+UdiFj6mwndueT0b2EpX5DFvNoZtbUFt6gqMC4iHwDsPZIj/07pzWGvIb6gWfs5FbIiSPLAvcpdJp68VgPxCBeeTJAPpuukV2pclZK0RfwMJRANpFyp8QTPEdWgvdyqhH90KzBRv9NptIJ1gjBE6sVfJfWsUvZY/0LUNTpRpO+8J5mfgLx8EtOFfRgpjHFmdo1REHWeF/fr5GLS0hoMaaTBViGS6jaqOJ7d8UynRctNczl5WRhJIDtx9+XplrZuoc433e/qLeUYdkEYS5BiKWf7tOaFa/Ud8Rkdh/m+68sbsHuA1HFph/egLQ8aK2MaxVw=
-  skip_cleanup: true
-  file: "playground-1.0.zip"
-  on:
-    repo: dsieger/playground
-#    tags: true
