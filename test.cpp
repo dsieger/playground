@@ -1,3 +1,10 @@
+#include "test.h"
+
+#if defined _MSC_VER
+#include <windows.h>
+#include <psapi.h>
+#endif
+
 double square(double x)
 {
     return x*x;
