@@ -30,7 +30,7 @@ add_dependencies(unitTests googletest)
 if(UNIX OR APPLE)
   target_link_libraries(unitTests asdf googletest pthread)
 elseif(WIN32)
-  target_link_libraries(unitTests asdf googletest)
+  target_link_libraries(unitTests asdf googletest Psapi.lib)
 endif()
 
 include(CTest)
