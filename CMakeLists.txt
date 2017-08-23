@@ -8,6 +8,9 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug" AND CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 add_library(asdf test.cpp)
+if(WIN32)
+  target_link_libraries(asdf Psapi.lib)
+endif()
 
 set(GOOGLE_TEST_ROOT external/googletest/googletest CACHE STRING "Google Test root")
 
@@ -30,7 +33,7 @@ add_dependencies(unitTests googletest)
 if(UNIX OR APPLE)
   target_link_libraries(unitTests asdf googletest pthread)
 elseif(WIN32)
-  target_link_libraries(unitTests asdf googletest Psapi.lib)
+  target_link_libraries(unitTests asdf googletest)
 endif()
 
 include(CTest)

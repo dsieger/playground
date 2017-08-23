@@ -10,4 +10,8 @@ TEST(square, square)
 TEST(twice, twice)
 {
     ASSERT_EQ(twice(2),4);
+
+#if defined _MSC_VER
+    ASSERT_NE(getSize(),0);
+#endif
 }
