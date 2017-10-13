@@ -4,6 +4,7 @@ matrix:
   - os: linux
     env: CONFIG=Debug
     compiler: gcc
+    env: BUILD_DOCS=true
   - os: linux
     env: CONFIG=Release
     compiler: gcc
@@ -29,7 +30,7 @@ sudo: false
 dist: trusty
 before_install:
   - if [ "$CONFIG" == "Debug" ] && [ "$CXX" == "g++" ] && [ "$TRAVIS_OS_NAME" == linux ] ; then pip install --user cpp-coveralls ; fi
-  - if [ "$CONFIG" == "Debug" ] && [ "$CXX" == "g++" ] && [ "$TRAVIS_OS_NAME" == linux ] ; then sudo apt-get install -y doxygen ; fi
+  - if [ "$BUILD_DOCS" = true ] ; then sudo apt-get install -y doxygen ; fi
 before_script:
   - mkdir build
   - cd build
@@ -37,7 +38,7 @@ before_script:
 script:
   - make
   - make test
-  - if [ "$CONFIG" == "Debug" ] && [ "$CXX" == "g++" ] && [ "$TRAVIS_OS_NAME" == linux ] ; then make doxygen ; fi
+  - if [ "$BUILD_DOCS" = true ] ; then make doxygen ; fi
 after_success:
   - if [ "$CONFIG" == "Debug" ] && [ "$CXX" == "g++" ] && [ "$TRAVIS_OS_NAME" == linux ] ; then coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*" ; fi
 deploy:
@@ -46,5 +47,5 @@ deploy:
   github_token: $GITHUB_TOKEN
   on:
     branch: master
-    condition: "$CONFIG = Debug && $CXX = g++ && $TRAVIS_OS_NAME = linux"
+    condition: "$BUILD_DOCS = true"
   local_dir: docs/html
