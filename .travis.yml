@@ -42,11 +42,3 @@ script:
   - if [ "$BUILD_DOCS" = true ] ; then make doxygen ; fi
 after_success:
   - if [ "$CONFIG" == "Debug" ] && [ "$CXX" == "g++" ] && [ "$TRAVIS_OS_NAME" == linux ] ; then coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*" ; fi
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  on:
-    branch: master
-    condition: "$BUILD_DOCS = true"
-  local_dir: docs/html
