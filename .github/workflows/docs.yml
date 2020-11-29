@@ -13,8 +13,8 @@ jobs:
       with:
         submodules: true
 
-    - name: Install dependencies
-      run: sudo apt-get install doxygen jekyll ruby-jekyll-seo-tag
+    - name: Install
+      run: sudo apt-get install doxygen jekyll ruby-jekyll-seo-tag ruby-jekyll-feed
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{runner.workspace}}/build
