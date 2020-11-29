@@ -14,11 +14,7 @@ jobs:
         submodules: true
 
     - name: Install dependencies
-      run: |
-        sudo apt-get install doxygen ruby-dev
-        sudo gem install jekyll
-        sudo gem install jekyll-theme-minima
-        sudo gem install jekyll-feed
+      run: sudo apt-get install doxygen jekyll ruby-jekyll-seo-tag
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{runner.workspace}}/build
