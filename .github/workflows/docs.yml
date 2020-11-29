@@ -27,7 +27,7 @@ jobs:
     - name: Build
       working-directory: ${{runner.workspace}}/build
       shell: bash
-      run: cmake --build . --target doxygen
+      run: cmake --build . --target docs
 
     - name: GH Pages Deployment
       uses: peaceiris/actions-gh-pages@v3
