@@ -34,7 +34,7 @@ jobs:
       - name: Run
         working-directory: ${{runner.workspace}}/build
         shell: bash
-        run: test2
+        run: ./test2
 
       - name: Coverage
         working-directory: ${{runner.workspace}}/build
